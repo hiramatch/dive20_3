@@ -3,7 +3,10 @@
     <%= link_to "トピックを作成する", new_topic_path %><br>
     <% @topics.each do |topic| %>
         <p><%= topic.user.name %>さんが投稿しました</p>
-        <p><%= topic.content %></p>
+        <p><%= link_to "#{topic.content}", topic_path(topic.id)  %><p>
+        <% if topic.comments.count > 0 %>
+        <p>コメント   <%= topic.comments.count %>件</p>
+        <% end %>
         <%= link_to "編集", edit_topic_path(topic.id)  %>
         <%= link_to "削除", topic_path(topic), method: :delete ,data: { confirm:"本当に削除していいですか?" } %><br>
     <% end %>

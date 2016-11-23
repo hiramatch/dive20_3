@@ -8,8 +8,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-  end
-
+    @comment = @topic.comments.build
+    @comments = @topic.comments  end
   def new
     @topic = Topic.new
   end
