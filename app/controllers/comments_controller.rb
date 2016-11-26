@@ -17,6 +17,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @topic =  @comment.topic
+
+    @comment.destroy
+
+    respond_to do |format|
+       format.html { redirect_to topic_path(@topic), notice: 'コメントを削除しました。' }
+       format.json { render :show, status: :created, location: @comment }
+       format.js { render :index }
+    end
+
+  end
+
   private
     def comment_params
       params.require(:comment).permit(:topic_id, :content)
