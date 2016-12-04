@@ -37,6 +37,8 @@ gem 'dotenv-rails'
 gem 'unicorn'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'pry-rails'
@@ -55,4 +57,5 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
   gem 'letter_opener_web'
+  gem 'dotenv-rails'
 end
