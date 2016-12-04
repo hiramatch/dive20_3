@@ -35,8 +35,12 @@ gem 'devise'
 gem 'fog'
 gem 'dotenv-rails'
 gem 'unicorn'
+gem 'carrierwave'
+gem 'rmagick'
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -51,5 +55,4 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano3-unicorn'
   gem 'letter_opener_web'
-
 end

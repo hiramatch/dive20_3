@@ -1,0 +1,7 @@
+  <h2>ユーザー</h2>
+  <% @users.each do |user| %>
+        <p><%= user.email %></p>
+        <p><%= user.name %></p>
+      </div>
+  <% end %>
+    <%= link_to '戻る', topics_path %>
