@@ -3,5 +3,6 @@
         <p><%= user.email %></p>
         <p><%= user.name %></p>
       </div>
+  <%= render 'follow_form', user: user %>
   <% end %>
-    <%= link_to '戻る', topics_path %>
+  <%= link_to '戻る', topics_path %>
