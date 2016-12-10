@@ -40,4 +40,8 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
+
+  def self.create_unique_string
+    SecureRandom.uuid
+  end
 end
