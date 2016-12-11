@@ -5,10 +5,16 @@
         <strong>作成時間:</strong>
         <%= @topic.created_at.strftime("%y/%m/%d %p %l:%M") %>
       </p>
+      <% if @topic.image? %>
+      <%= image_tag @topic.image ,width:"200" %>
+      <% else %>
+      <%= image_tag 'noimage.gif' %>
+      <% end %>
+
     <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic } %>
     </div>
     <%= render partial: 'comments/form', locals: { comment: @comment, topic: @topic } %>
-    <%= link_to '編集', edit_topic_path(@topic) %> |
+    <%= link_to '編集', edit_topic_path(@topic) %>
     <%= link_to '戻る', topics_path %>

@@ -1,2 +1,8 @@
     <h2>ブログを更新する</h2>
+        <% if @topic.image? %>
+        <%= image_tag @topic.image ,width:"200" %>
+        <% else %>
+        <%= image_tag 'noimage.gif' %>
+       <% end %>
+
        <%= render 'form' %>
