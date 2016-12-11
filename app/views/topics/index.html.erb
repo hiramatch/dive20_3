@@ -6,8 +6,6 @@
         <p><%= topic.user.name %>さんが投稿しました</p>
         <% if topic.image? %>
         <%= image_tag topic.image ,width:"200" %>
-        <% else %>
-        <%= image_tag 'noimage.gif' %>
        <% end %>
         <p><%= link_to "#{topic.content}", topic_path(topic.id)  %><p>
         <% if topic.comments.count > 0 %>

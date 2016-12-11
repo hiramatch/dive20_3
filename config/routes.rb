@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   resources :topics do
     resources :comments
   end
-
   resources :users, only: [:index]
-
   resources :relationships, only: [:create, :destroy]
+  resources :conversations do
+    resources :messages
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
