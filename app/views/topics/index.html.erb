@@ -2,6 +2,7 @@
     <h2>トピック一覧</h2>
     <%= link_to "トピックを作成する", new_topic_path %><br>
     <% @topics.each do |topic| %>
+        <%= profile_img(topic.user, "40x40") if profile_img(topic.user, "40x40") %>
         <p><%= topic.user.name %>さんが投稿しました</p>
         <p><%= link_to "#{topic.content}", topic_path(topic.id)  %><p>
         <% if topic.comments.count > 0 %>

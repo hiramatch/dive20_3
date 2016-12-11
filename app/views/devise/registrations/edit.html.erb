@@ -18,6 +18,7 @@
     <%= f.text_field :name %>
   </div>
 
+<% if @user.provider.blank? %>
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
@@ -36,9 +37,9 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
-
+<% end %>
   <div class="field">
-    <%= profile_img(@user) if profile_img(@user) %>
+    <%= profile_img(@user, "100x100") if profile_img(@user, "100x100") %>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>

@@ -11,4 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+/public/uploads/tmp/*
+/public/uploads/user/avatar/*
 .env
