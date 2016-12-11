@@ -1,10 +1,13 @@
   <h2>ユーザー</h2>
   <% @users.each do |user| %>
-        <p><%= user.email %></p>
-        <p><%= user.name %></p>
-      </div>
-<% if user != current_user %>
-  <%= render 'follow_form', user: user %>
-<% end %>
+    <% if user. confirmed_at %>
+        <%= profile_img(user, "40x40") if profile_img(user, "40x40") %>
+          <p><%= user.email %></p>
+          <p><%= user.name %></p>
+         </div>
+     <% if user != current_user %>
+       <%= render 'follow_form', user: user %>
+     <% end %>
+   <% end %>
   <% end %>
   <%= link_to '戻る', topics_path %>
