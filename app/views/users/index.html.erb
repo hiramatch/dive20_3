@@ -1,11 +1,12 @@
   <h2>ユーザー</h2>
   <% @users.each do |user| %>
     <% if user.confirmed_at && user != current_user %>
-        <%= profile_img(user, "40x40") if profile_img(user, "40x40") %><br>
-          <p><%= user.name %></p>
+        <p><%= profile_img(user, "40x40") if profile_img(user, "40x40") %>
+          <%= user.name %>
           <% if user.following?(current_user) %>
-            <p>あなたをフォローしています</p>
+            <span style="color:red;">あなたをフォローしています</span>
           <% end %>
+        </p>
          </div>
        <%= render 'follow_form', user: user %>
    <% end %>
