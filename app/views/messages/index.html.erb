@@ -2,24 +2,17 @@
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
 
-<div class="ui segment">
   <% @messages.each do |message| %>
     <% if message.body %>
       <% user = User.find(message.user_id) %>
-      <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.body %>
-            </div>
-          </div>
-        </div>
-      </div>
+        <p>
+         <%= profile_img(user, "40x40") if profile_img(user, "40x40") %>
+         <%= user.name %>
+        </p>
+        <p><%= message.message_time %></p>
+        <p><%= message.body %></p>
     <% end %>
   <% end %>
-</div>
 
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
   <div class="field">

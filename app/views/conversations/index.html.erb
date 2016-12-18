@@ -7,7 +7,8 @@
         <td>
           <% if conversation.target_user(current_user).present? %>
             <% if conversation.target_user(current_user).following?(current_user) && current_user.following?(conversation.target_user(current_user)) %>
-            <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
+               <%= profile_img(conversation.target_user(current_user), "40x40") if profile_img(conversation.target_user(current_user), "40x40") %>
+               <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
             <% end %>
           <% end %>
         </td>
