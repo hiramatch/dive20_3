@@ -1,14 +1,18 @@
     <p><%= notice %></p>
       <% @topics.each do |topic| %>
         <% if topic.user == current_user || (topic.user.following?(current_user) && current_user.following?(topic.user)) %>
-
-       <%= link_to user_topics_path(topic.user.id) do %>
-         <p><%= profile_img(topic.user, "25x25") if profile_img(topic.user, "25x25") %><%= topic.user.name %></p>
-       <% end %>
-
-        <% if topic.image? %>
-            <%= image_tag topic.image ,width:"200" %>
+          <%= link_to user_topics_path(topic.user.id) do %>
+            <p><%= profile_img(topic.user, "25x25") if profile_img(topic.user, "25x25") %><%= topic.user.name %></p>
           <% end %>
-          <p><%= link_to "#{topic.content}", user_topic_path(topic.user, topic.id)  %><p>
-        <% end %>
+
+          <%= link_to user_topic_path(topic.user.id, topic.id) do %>
+            <% if topic.image? %>
+              <%= image_tag topic.image ,width:"200" if topic.image %>
+            <% end %>
+            <p><%= topic.content %><p>
+          <% end %>
+         <% if topic.comments.count > 0 %>
+           <p>コメント   <%= topic.comments.count %>件</p>
+         <% end %>
+      <% end %>
     <% end %>

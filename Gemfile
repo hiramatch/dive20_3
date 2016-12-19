@@ -40,6 +40,7 @@ gem 'rmagick'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem 'pry-rails'
