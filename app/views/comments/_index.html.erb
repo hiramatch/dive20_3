@@ -2,8 +2,8 @@
   <% comments.each do |comment| %>
     <% unless comment.id.nil? %>
       <li>
-        <p class="left"><%= profile_img(comment.user, "40x40") if profile_img(comment.user, "40x40") %>
-        <%= comment.user.name %>さんがコメントしました。</p>
+        <p class="left"><%= profile_img(comment.user, "20x20") if profile_img(comment.user, "20x20") %>
+        <%= comment.user.name %></p>
         <p class="left"><%= comment.content %></p>
         <% if current_user.id == comment.user.id %>
             <%= link_to '編集', '#' %>

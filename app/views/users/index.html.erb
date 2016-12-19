@@ -1,14 +1,14 @@
   <h2>ユーザー</h2>
   <% @users.each do |user| %>
     <% if user.confirmed_at && user != current_user %>
-        <p><%= profile_img(user, "40x40") if profile_img(user, "40x40") %>
-          <%= user.name %>
-          <% if user.following?(current_user) %>
-            <span style="color:red;">あなたをフォローしています</span>
-          <% end %>
-        </p>
-         </div>
-       <%= render 'follow_form', user: user %>
+       <%= link_to user_topics_path(user.id) do %>
+         <p><%= profile_img(user, "25x25") if profile_img(user, "25x25") %><%= user.name %>
+       <% end %>
+       <% if user.following?(current_user) %>
+          <span style="color:red;">あなたをフォローしています</span>
+       <% end %>
+      </p>
+        <%= render 'follow_form', user: user %>
    <% end %>
  <br>
   <% end %>
