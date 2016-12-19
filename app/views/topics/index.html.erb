@@ -1,16 +1,16 @@
     <p><%= notice %></p>
-    <h2>トピック一覧</h2>
-    <%= link_to "トピックを作成する", new_topic_path %><br>
+    <h3><%= profile_img(@user, "40x40") if profile_img(@user, "40x40") %>
+    <%= @user.name %></h3>
     <% @topics.each do |topic| %>
-      <p><%= profile_img(topic.user, "40x40") if profile_img(topic.user, "40x40") %>
-      <%= topic.user.name %>さんが投稿しました</p>
       <% if topic.image? %>
         <%= image_tag topic.image ,width:"200" %>
       <% end %>
-      <p><%= link_to "#{topic.content}", topic_path(topic.id)  %><p>
+      <p><%= link_to "#{topic.content}", user_topic_path(topic.user, topic.id)  %><p>
       <% if topic.comments.count > 0 %>
         <p>コメント   <%= topic.comments.count %>件</p>
       <% end %>
-      <%= link_to "編集", edit_topic_path(topic.id)  %>
-      <%= link_to "削除", topic_path(topic), method: :delete ,data: { confirm:"本当に削除していいですか?" } %><br>
+      <% if @user == current_user %>
+      <%= link_to "編集", edit_user_topic_path(current_user.id, topic.id)  %>
+      <%= link_to "削除", user_topic_path(topic.user, topic.id), method: :delete ,data: { confirm:"本当に削除していいですか?" } %><br>
+      <% end %>
     <% end %>

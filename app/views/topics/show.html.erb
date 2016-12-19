@@ -13,8 +13,8 @@
 
     <p>コメント一覧</p>
     <div id="comments_area">
-      <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic } %>
+      <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic, user:@topic.user } %>
     </div>
-    <%= render partial: 'comments/form', locals: { comment: @comment, topic: @topic } %>
-    <%= link_to '編集', edit_topic_path(@topic) %>
-    <%= link_to '戻る', topics_path %>
+    <%= render partial: 'comments/form', locals: { comment: @comment, topic: @topic , user:@topic.user } %>
+    <%= link_to '編集', edit_user_topic_path(@topic.user,@topic) %>
+    <%= link_to '戻る', user_topics_path %>

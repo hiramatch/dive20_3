@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to topic_path(@topic), notice: 'コメントを投稿しました。' }
+        format.html { redirect_to user_topic_path(@topic), notice: 'コメントを投稿しました。' }
         format.json { render :show, status: :created, location: @comment }
         format.js { render :index }
       else
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-       format.html { redirect_to topic_path(@topic), notice: 'コメントを削除しました。' }
+       format.html { redirect_to user_topic_path(@topic), notice: 'コメントを削除しました。' }
        format.json { render :show, status: :created, location: @comment }
        format.js { render :index }
     end

@@ -13,6 +13,7 @@
   <li><%= link_to 'ユーザー一覧', users_path %></li>
   <li><%= link_to 'ユーザー情報', edit_user_registration_path %></li>
   <li><%= link_to "メッセージ", conversations_path %></li>
+  <li><%= link_to "トピックを作成する", new_user_topic_path(current_user.id) %></li>
 <% else %>
   <li><%= link_to 'ログイン', new_user_session_path  %></li>
   <li><%= link_to 'サインアップ', new_user_registration_path %></li>
