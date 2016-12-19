@@ -1,0 +1,10 @@
+    <p><%= notice %></p>
+      <% @topics.each do |topic| %>
+        <% if topic.user == current_user || (topic.user.following?(current_user) && current_user.following?(topic.user)) %>
+          <%= topic.user.name %>さんが投稿しました</p>
+          <% if topic.image? %>
+            <%= image_tag topic.image ,width:"200" %>
+          <% end %>
+          <p><%= link_to "#{topic.content}", user_topic_path(topic.user, topic.id)  %><p>
+        <% end %>
+    <% end %>

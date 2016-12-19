@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  root 'topics#index'
+  root 'top#index'
+  get 'top', :controller => 'top', :action => 'index' 
 
   resources :users do
     resources :topics do
