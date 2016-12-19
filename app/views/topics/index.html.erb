@@ -1,16 +1,18 @@
     <p><%= notice %></p>
     <h3><%= profile_img(@user, "40x40") if profile_img(@user, "40x40") %>
     <%= @user.name %></h3>
-    <% @topics.each do |topic| %>
-      <% if topic.image? %>
-        <%= image_tag topic.image ,width:"200" %>
-      <% end %>
-      <p><%= link_to "#{topic.content}", user_topic_path(topic.user, topic.id)  %><p>
-      <% if topic.comments.count > 0 %>
-        <p>コメント   <%= topic.comments.count %>件</p>
-      <% end %>
-      <% if @user == current_user %>
-      <%= link_to "編集", edit_user_topic_path(current_user.id, topic.id)  %>
-      <%= link_to "削除", user_topic_path(topic.user, topic.id), method: :delete ,data: { confirm:"本当に削除していいですか?" } %><br>
-      <% end %>
+      <% if @user == current_user || (@user.following?(current_user) && current_user.following?(@user)) %>
+        <% @topics.each do |topic| %>
+          <% if topic.image? %>
+            <%= image_tag topic.image ,width:"200" %>
+          <% end %>
+        <p><%= link_to "#{topic.content}", user_topic_path(topic.user, topic.id)  %><p>
+        <% if topic.comments.count > 0 %>
+          <p>コメント   <%= topic.comments.count %>件</p>
+        <% end %>
+        <% if @user == current_user %>
+        <%= link_to "編集", edit_user_topic_path(current_user.id, topic.id)  %>
+        <%= link_to "削除", user_topic_path(topic.user, topic.id), method: :delete ,data: { confirm:"本当に削除していいですか?" } %><br>
+        <% end %>
+     <% end %>
     <% end %>

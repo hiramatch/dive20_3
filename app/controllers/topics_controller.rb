@@ -5,12 +5,13 @@ class TopicsController < ApplicationController
   def index
     # @topics = Topic.all
       @user
+      @topics
       if params[:user_id]
         @user = User.find(params[:user_id])
       else
         @user = current_user
       end
-    @topics = Topic.where(user_id: @user.id)
+      @topics = Topic.where(user_id: @user.id)
   end
 
   def show
