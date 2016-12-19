@@ -11,12 +11,14 @@ class TopicsController < ApplicationController
       else
         @user = current_user
       end
-      @topics = Topic.where(user_id: @user.id)
+      @topics = Topic.where(user_id: @user.id).order("updated_at DESC")
   end
 
   def show
     @comment = @topic.comments.build
-    @comments = @topic.comments  end
+    @comments = @topic.comments
+  end
+
   def new
     @topic = Topic.new
   end
@@ -51,7 +53,7 @@ class TopicsController < ApplicationController
 
   private
     def topics_params
-      params.require(:topic).permit(:content, :image)
+      params.require(:topic).permit(:content, :image, :p)
     end
 
     def set_topic
