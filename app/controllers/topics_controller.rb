@@ -27,7 +27,7 @@ class TopicsController < ApplicationController
     @topic =Topic.new(topics_params)
     @topic.user_id = current_user.id
     if @topic.save
-      redirect_to user_topics_path, notice: "記事を作成しました!"
+      redirect_to top_path, notice: "記事を作成しました!"
     else
       render action: 'new'
     end
@@ -38,12 +38,12 @@ class TopicsController < ApplicationController
 
   def update
     @topic.update(topics_params)
-    redirect_to user_topics_path, notice: "記事を更新しました!"
+    redirect_to top_path, notice: "記事を更新しました!"
   end
 
   def destroy
     @topic.destroy
-    redirect_to user_topics_path, notice: "記事を削除しました!"
+    redirect_to top_path, notice: "記事を削除しました!"
   end
 
   def confirm
