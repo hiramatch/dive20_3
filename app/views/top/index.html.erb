@@ -1,3 +1,5 @@
+<div class="container">
+  <div class="wrapper col-md-6 col-md-offset-2 col-sm-10">
     <p><%= notice %></p>
       <% @topics.each do |topic| %>
         <% if topic.user == current_user || (topic.user.following?(current_user) && current_user.following?(topic.user)) %>
@@ -5,14 +7,14 @@
             <p><%= profile_img(topic.user, "25x25") if profile_img(topic.user, "25x25") %><%= topic.user.name %></p>
           <% end %>
 
-          <%= link_to user_topic_path(topic.user.id, topic.id) do %>
+          <p><%= topic.content %><p>
             <% if topic.image? %>
-              <%= image_tag topic.image ,width:"200" if topic.image %>
+              <%= image_tag topic.image ,width:"400" if topic.image %>
             <% end %>
-            <p><%= topic.content %><p>
+          <%= link_to user_topic_path(topic.user.id, topic.id) do %>
+            <p>コメント   <%= topic.comments.count %>件</p>
           <% end %>
-         <% if topic.comments.count > 0 %>
-           <p>コメント   <%= topic.comments.count %>件</p>
-         <% end %>
       <% end %>
     <% end %>
+  </div>
+</div>
