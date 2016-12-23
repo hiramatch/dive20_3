@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dive203</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <li><%= link_to 'ホーム', root_path %></li>
-<% if user_signed_in? %>
-  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-  <li>
-   <%= link_to user_topics_path(current_user.id) do %>
-    <%= profile_img(current_user, "25x25") if profile_img(current_user, "25x25") %>
-    <%= current_user.name %>
-  <% end %>
-  </li>
-  <li><%= link_to 'ユーザー一覧', users_path %></li>
-  <li><%= link_to 'ユーザー情報', edit_user_registration_path %></li>
-  <li><%= link_to "メッセージ", conversations_path %></li>
-  <li><%= link_to "トピックを作成する", new_user_topic_path(current_user.id) %></li>
-<% else %>
-  <li><%= link_to 'ログイン', new_user_session_path  %></li>
-  <li><%= link_to 'サインアップ', new_user_registration_path %></li>
-<% end %>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Instagram</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- スマートフォンサイズで表示されるメニューボタンとテキスト -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/top/">DIVE20_3</a>
+      </div>
+      <div class="collapse navbar-collapse" id="nav-menu-2">
+      <% if user_signed_in? %>
+        <p class="navbar-text">
+          <%= link_to user_topics_path(current_user.id) do %>
+            <%= profile_img(current_user, "25x25") if profile_img(current_user, "25x25") %>
+              <%= current_user.name %>
+        </p>
+        <p class="navbar-text"><%= link_to 'ホーム', root_path %></p>
+        <p class="navbar-text"><%= link_to "友達", users_path %></p>
+        <p class="navbar-text"><%= link_to "メッセージ", conversations_path %></p>
+        <p class="navbar-text navbar-right"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p>
+          <% end %>
+      <% else %>
+        <p class="navbar-text navbar-right"><%= link_to 'ログイン', new_user_session_path %></p>
+        <p class="navbar-text navbar-right"><%= link_to 'サインアップ', new_user_registration_path %></p>
+      <% end %>
+    </div>
+    </nav>
+      <%= yield %>
+  </body>
 </html>
