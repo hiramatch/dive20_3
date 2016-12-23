@@ -1,20 +1,20 @@
-  <table class="table table-hover">
+  <table>
     <thead>
       <h2>メッセージ一覧</h2>
     </thead>
     <tbody>
       <% @conversations.each do |conversation| %>
         <td>
-       <%= link_to user_topics_path(conversation.target_user(current_user).id) do %>
           <% if conversation.target_user(current_user).present? %>
-            <% if conversation.target_user(current_user).following?(current_user) && current_user.following?(conversation.target_user(current_user)) %>
-               <%= profile_img(conversation.target_user(current_user), "25x25") if profile_img(conversation.target_user(current_user), "25x25") %>
-               <%= conversation.target_user(current_user).name %>
-        <% end %>
-               <%= link_to "メッセージ", conversation_messages_path(conversation)%>
+            <%= link_to user_topics_path(conversation.target_user(current_user).id) do %>
+                <% if conversation.target_user(current_user).following?(current_user) && current_user.following?(conversation.target_user(current_user)) %>
+                   <%= profile_img(conversation.target_user(current_user), "25x25") if profile_img(conversation.target_user(current_user), "25x25") %>
+                   <%= conversation.target_user(current_user).name %>
+                   <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: conversation.target_user(current_user).id), method: 'post'%>
+                <% end %>
             <% end %>
           <% end %>
         </td>
-      <% end %>
+    <% end %>
     </tbody>
   </table>
