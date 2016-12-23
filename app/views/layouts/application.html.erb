@@ -10,6 +10,12 @@
   <li><%= link_to 'ホーム', root_path %></li>
 <% if user_signed_in? %>
   <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  <li>
+   <%= link_to user_topics_path(current_user.id) do %>
+    <%= profile_img(current_user, "25x25") if profile_img(current_user, "25x25") %>
+    <%= current_user.name %>
+  <% end %>
+  </li>
   <li><%= link_to 'ユーザー一覧', users_path %></li>
   <li><%= link_to 'ユーザー情報', edit_user_registration_path %></li>
   <li><%= link_to "メッセージ", conversations_path %></li>
