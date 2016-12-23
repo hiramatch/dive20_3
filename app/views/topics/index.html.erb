@@ -1,6 +1,12 @@
     <p><%= notice %></p>
     <h3><%= profile_img(@user, "40x40") if profile_img(@user, "40x40") %>
     <%= @user.name %></h3>
+    <% if @user.confirmed_at && @user != current_user %>
+       <% if @user.following?(current_user) %>
+          <p><span style="color:red;">あなたをフォローしています</span></p>
+       <% end %>
+       <%= render '/users/follow_form', user: @user %>
+    <% end %>
       <% if @user == current_user || (@user.following?(current_user) && current_user.following?(@user)) %>
         <% @topics.each do |topic| %>
           <%= link_to user_topic_path(topic.user.id, topic.id) do %>
