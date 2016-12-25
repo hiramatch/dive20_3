@@ -41,6 +41,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'twitter-bootstrap-rails'
+gem 'fog'
 
 group :development, :test do
   gem 'pry-rails'

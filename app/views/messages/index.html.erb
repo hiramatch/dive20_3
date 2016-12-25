@@ -1,5 +1,8 @@
 <div class="container">
   <div class="wrapper col-md-6 col-md-offset-2 col-sm-10">
+    <h3><%= profile_img(@conversation.target_user(current_user), "40x40") if profile_img(@conversation.target_user(current_user), "40x40") %>
+    <%= @conversation.target_user(current_user).name %></h3>
+
     <div class='msg-body-area'>
       <% if @over_ten %>
         <%= link_to '以前のメッセージ', '?m=all' %>
