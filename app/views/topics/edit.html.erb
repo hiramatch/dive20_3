@@ -1,8 +1,12 @@
-    <h2>ブログを更新する</h2>
+  <div class="container">
+    <div class="wrapper col-md-6 col-md-offset-2 col-sm-10">
+      <h4>トピックを更新する</h4>
         <% if @topic.image? %>
-        <%= image_tag @topic.image ,width:"200" %>
+        <%= image_tag @topic.image ,width:"400" %>
         <% else %>
         <%= image_tag 'noimage.gif' %>
        <% end %>
-
        <%= render 'form' %>
+    </div>
+  </div>
+</h4>

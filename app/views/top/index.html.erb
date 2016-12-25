@@ -1,12 +1,20 @@
 <div class="container">
   <div class="wrapper col-md-6 col-md-offset-2 col-sm-10">
     <p><%= notice %></p>
+
+    <div class='pull-right'>
+      <%= link_to "写真を投稿する", new_user_topic_path(current_user.id) , class: 'btn btn-primary' %>
+    </div>
+
+    <div class='top-area'>
       <% @topics.each do |topic| %>
         <% if topic.user == current_user || (topic.user.following?(current_user) && current_user.following?(topic.user)) %>
           <%= link_to user_topics_path(topic.user.id) do %>
             <p><%= profile_img(topic.user, "25x25") if profile_img(topic.user, "25x25") %><%= topic.user.name %></p>
           <% end %>
-
+          <div class='top-time'>
+            <p><%= topic.updated_at %></p>
+          </div>
           <p><%= topic.content %><p>
             <% if topic.image? %>
               <%= image_tag topic.image ,width:"400" if topic.image %>
@@ -14,7 +22,14 @@
           <%= link_to user_topic_path(topic.user.id, topic.id) do %>
             <p>コメント   <%= topic.comments.count %>件</p>
           <% end %>
+          <div class='edit-area'>
+          <% if topic.user == current_user %>
+            <%= link_to "編集", edit_user_topic_path(current_user.id, topic.id),class: 'btn btn-primary'  %>
+            <%= link_to "削除", user_topic_path(topic.user, topic.id), method: :delete ,data: { confirm:"本当に削除していいですか?" }, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
+  </div>
   </div>
 </div>

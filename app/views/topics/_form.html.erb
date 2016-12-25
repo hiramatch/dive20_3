@@ -1,8 +1,9 @@
 <%= form_for(@topic, url: choose_new_or_edit) do |f| %>
-  <%= f.label :内容 %>
-  <%= f.text_field :content %>
-  <br>
-   <%= f.file_field :image %>
-
-  <%= f.submit '投稿' %>
+  <div class="field">
+    <%= f.text_field :content, autofocus: true, class: "form-control", placeholder: "内容" %>
+  </div>
+  <div class="field">
+     <%= f.file_field :image %>
+  </div>
+  <%= f.submit '投稿', class: 'btn btn-primary' %>
 <% end %>

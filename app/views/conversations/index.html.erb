@@ -1,20 +1,19 @@
-  <table>
-    <thead>
-      <h2>メッセージ一覧</h2>
-    </thead>
-    <tbody>
+<div class="container">
+  <div class="wrapper col-md-6 col-md-offset-2 col-sm-10">
+    <h4>メッセージ一覧</h4>
       <% @conversations.each do |conversation| %>
-        <td>
-          <% if conversation.target_user(current_user).present? %>
-            <%= link_to user_topics_path(conversation.target_user(current_user).id) do %>
-                <% if conversation.target_user(current_user).following?(current_user) && current_user.following?(conversation.target_user(current_user)) %>
-                   <%= profile_img(conversation.target_user(current_user), "25x25") if profile_img(conversation.target_user(current_user), "25x25") %>
-                   <%= conversation.target_user(current_user).name %>
-                   <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: conversation.target_user(current_user).id), method: 'post'%>
-                <% end %>
+        <% if conversation.target_user(current_user).present? %>
+          <%= link_to user_topics_path(conversation.target_user(current_user).id) do %>
+            <% if conversation.target_user(current_user).following?(current_user) && current_user.following?(conversation.target_user(current_user)) %>
+              <%= profile_img(conversation.target_user(current_user), "25x25") if profile_img(conversation.target_user(current_user), "25x25") %>
+               <%= conversation.target_user(current_user).name %>
+               <div class='msg-btn-area'>
+               <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: conversation.target_user(current_user).id), method: 'post', class:'btn btn-info' %>
+               </div>
+                  <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-    <% end %>
-    </tbody>
-  </table>
+          </td>
+      <% end %>
+  </div>
+</div>

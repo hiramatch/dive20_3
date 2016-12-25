@@ -1,4 +1,14 @@
-    <p><%= notice %></p>
+<div class="container">
+  <div class="wrapper col-md-6 col-md-offset-2 col-sm-10">
+  <p><%= notice %></p>
+
+  <% if @user == current_user %>
+    <div class='pull-right'>
+      <%= link_to "写真を投稿する", new_user_topic_path(current_user.id) , class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <div class='top-area'>
     <h3><%= profile_img(@user, "40x40") if profile_img(@user, "40x40") %>
     <%= @user.name %></h3>
     <% if @user.confirmed_at && @user != current_user %>
@@ -6,21 +16,29 @@
           <p><span style="color:red;">あなたをフォローしています</span></p>
        <% end %>
        <%= render '/users/follow_form', user: @user %>
+    <% elsif @user == current_user %>
+        <p><%= link_to "ユーザー情報を編集する", edit_user_registration_path, class: 'btn btn-primary' %></p>
     <% end %>
       <% if @user == current_user || (@user.following?(current_user) && current_user.following?(@user)) %>
         <% @topics.each do |topic| %>
-          <%= link_to user_topic_path(topic.user.id, topic.id) do %>
-            <% if topic.image? %>
-              <%= image_tag topic.image ,width:"200" if topic.image %>
-            <% end %>
-            <p><%= topic.content %><p>
-          <% end %>
-        <% if topic.comments.count > 0 %>
+        <div class='topic-time'>
+          <p><%= topic.updated_at %></p>
+        </div>
+        <p><%= topic.content %><p>
+        <% if topic.image? %>
+          <%= image_tag topic.image ,width:"400" if topic.image %>
+        <% end %>
+        <%= link_to user_topic_path(topic.user.id, topic.id) do %>
           <p>コメント   <%= topic.comments.count %>件</p>
         <% end %>
+        <div class='edit-area'>
         <% if @user == current_user %>
-        <%= link_to "編集", edit_user_topic_path(current_user.id, topic.id)  %>
-        <%= link_to "削除", user_topic_path(topic.user, topic.id), method: :delete ,data: { confirm:"本当に削除していいですか?" } %><br>
+        <%= link_to "編集", edit_user_topic_path(current_user.id, topic.id), class:'btn btn-primary'  %>
+        <%= link_to "削除", user_topic_path(topic.user, topic.id), method: :delete ,data: { confirm:"本当に削除していいですか?" }, class:'btn btn-primary' %>
         <% end %>
+      </div>
      <% end %>
     <% end %>
+  </div>
+  </div>
+</div>
