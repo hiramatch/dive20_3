@@ -12,10 +12,10 @@ CarrierWave.configure do |config|
 
   case Rails.env
     when 'production'
-      config.fog_directory = 'dive20'
+      config.fog_directory = 'dive20-3-production'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/dive20-3-production'
     when 'development'
-      config.fog_directory = 'dive20'
+      config.fog_directory = 'dive20-development'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/dive20-3-development'
   end
 end
