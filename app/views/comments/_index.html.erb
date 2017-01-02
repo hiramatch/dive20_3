@@ -8,7 +8,14 @@
         </div>
           <p><%= comment.content %></p>
         <% if current_user.id == comment.user.id %>
-            <%= link_to '削除', user_topic_comment_path(current_user, topic, comment), method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' }, class:'btn btn-info btn-sm' %>
+            <%= render partial: 'comments/form_update', locals: { comment: comment, topic: comment.topic , user: comment.topic.user } %>
+            <div class='comment_btn'>
+              <%= link_to '編集', edit_user_topic_comment_path(current_user, topic, comment), remote: true, class:'btn btn-sm' %>
+              <%= link_to '削除', user_topic_comment_path(current_user, topic, comment), method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' }, class:'btn btn-sm' %>
+            </div>
+            <div class='comment_cancel' id="cancel<%= comment.id %>">
+              <%= link_to '取り消す', user_topic_path(current_user, topic), class:'btn btn-sm' %>
+            </div>
           </p>
         <% end %>
     <% end %>

@@ -1,0 +1,9 @@
+<div class="div_edit" id="comment<%= comment.id %>">
+  <%= form_for([user,topic,comment], remote: true, url: user_topic_comment_path(user, topic, comment), method: :put) do |f| %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :topic_id %>
+    <div class="field">
+      <%= f.text_field :content, class: "form-control"  %>
+    </div>
+  <% end %>
+</div>

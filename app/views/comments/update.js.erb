@@ -1,0 +1,3 @@
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.topic.comments, topic: @comment.topic }) %>")
+$('.div_edit').hide()
+$('.comment_cancel').hide()

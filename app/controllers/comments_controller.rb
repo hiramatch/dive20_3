@@ -17,6 +17,30 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    @topic =  @comment.topic
+
+    respond_to do |format|
+       format.html { redirect_to user_topic_path(@topic)}
+       format.json { render :show, status: :created, location: @comment }
+       format.js { render :edit }
+    end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @topic =  @comment.topic
+
+    @comment.update(comment_params)
+
+    respond_to do |format|
+       format.html { redirect_to user_topic_path(@topic) }
+       format.json { render :show, status: :created, location: @comment }
+       format.js { render :update }
+    end
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     @topic =  @comment.topic
@@ -24,11 +48,10 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-       format.html { redirect_to user_topic_path(@topic), notice: 'コメントを削除しました。' }
+       format.html { redirect_to user_topic_path(@topic) }
        format.json { render :show, status: :created, location: @comment }
        format.js { render :index }
     end
-
   end
 
   private
