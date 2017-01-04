@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.navbar {
+  background-color: #3b5998;
+}
+
+.navbar * {
+  color: white;
+}
